@@ -3,6 +3,7 @@ import './App.css'
 import "@fontsource/roboto"; // Defaults to weight 400.
 import Link from './Link.jsx';
 import logo from '/rainishere_l.png'
+import './fonts.css'
 
 
 function App() {
@@ -15,14 +16,12 @@ function App() {
           <img src={logo} className="logo" alt="Rainishere logo" />
         </a>
       </div>
-      <h1>Rainishere</h1>
+      <div className='title'>Rainishere</div>
       <div className="card">
         <Link />
         
       </div>
-      <p className="read-the-docs">
-        Rainishere only work on projects above.
-      </p>
+      <p className="read-the-docs">以上的10個連結是RainIsHere的真實社交平台及獨家優惠連結，其他沒有登記的平台及連結全部屬於虛假帳戶或假平台，請大家小心騙徒喔！</p>
     </>
   )
 }
