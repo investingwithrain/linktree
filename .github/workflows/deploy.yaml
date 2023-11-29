@@ -43,7 +43,7 @@ jobs:
           path: ./dist
 
       - name: Setup custom domain
-        run: echo 'https://links.investingwithrain.com/' > ./dist/CNAME
+        run: echo 'links.investingwithrain.com' > ./dist/CNAME
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
