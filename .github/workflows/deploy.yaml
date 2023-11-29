@@ -20,11 +20,8 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
-      - name: Pre-Build project
-        run: npm run build
-
       - name: Build project
-        run: vite build
+        run: npm run build
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
@@ -44,6 +41,9 @@ jobs:
         with:
           name: production-files
           path: ./dist
+
+      - name: Setup custom domain
+        run: echo 'https://links.investingwithrain.com/' > ./dist/CNAME
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
