@@ -10,7 +10,7 @@
     font-family: 'HKFont', sans-serif;
     cursor: pointer;
     margin-bottom: 0.6em;
-    transition: cubic-bezier(0.23, 1, 0.32, 1) 300ms;
+    transition: cubic-bezier(0.23, 1, 0.32, 1) 500ms;
   }
   
  .link:hover {
