@@ -2,7 +2,7 @@
 .link {
     width: 80vw;
     border-radius: 4px;
-    background: linear-gradient(to right, #ffff99, #ffff00); /* Gradient background */
+    background: linear-gradient(to bottom left, #ffff00, #d6d600); /* Gradient background */
     color: #000;
     font-size: 1.4em;
     font-family: 'HKFont', sans-serif;
