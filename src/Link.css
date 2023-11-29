@@ -1,6 +1,6 @@
 
 .link {
-    width: 80vw;
+    width: 70vw;
     border-radius: 4px;
     background: linear-gradient(to bottom left, #ffff00, #ffff85); /* Gradient background */
     color: #000;
@@ -8,7 +8,7 @@
     font-family: 'HKFont', sans-serif;
     cursor: pointer;
     margin-bottom: 0.6em;
-    transition: ease-in-out 200ms;
+    transition: cubic-bezier(0.23, 1, 0.32, 1) 300ms;
   }
   
  .link:hover {
