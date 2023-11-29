@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import "@fontsource/roboto"; // Defaults to weight 400.
 import Link from './Link.jsx';
-import logo from '/rainishere_l.png'
+import logo from '/rainishere_s.png'
 import './fonts.css'
 
 
