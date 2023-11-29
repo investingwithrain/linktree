@@ -1,6 +1,8 @@
 
 .link {
     width: 70vw;
+    min-width: 300px; /* Minimum width */
+    max-width: 1200px; /* Maximum width */
     border-radius: 4px;
     background: linear-gradient(to bottom left, #ffff00, #ffff85); /* Gradient background */
     color: #000;
