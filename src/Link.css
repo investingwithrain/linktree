@@ -1,13 +1,27 @@
 
-.link {
+/* .link {
     width: 70vw;
-    min-width: 300px; /* Minimum width */
-    max-width: 1200px; /* Maximum width */
+    min-width: 300px; 
+    max-width: 1200px; 
     border-radius: 4px;
-    background: linear-gradient(to bottom left, #ffff00, #ffff85); /* Gradient background */
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px); 
     color: #000;
     font-size: 1.4em;
-    font-family: 'HKFont', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    margin-bottom: 0.6em;
+    transition: cubic-bezier(0.23, 1, 0.32, 1) 500ms;
+  } */
+
+  .link {
+    width: 400px;
+    height: 200px;
+    margin: 16px;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px); 
+    color: #000;
     cursor: pointer;
     margin-bottom: 0.6em;
     transition: cubic-bezier(0.23, 1, 0.32, 1) 500ms;
@@ -15,4 +29,40 @@
   
  .link:hover {
     scale: 1.1;
+    border: transparent;
+  }
+
+  .contents {
+    display: grid;
+    grid-template-columns: 24px 40px 16px auto 24px;
+    grid-template-rows: 32px 40px 16px 80px 32px;
+    align-items: start; 
+    justify-items: start; 
+  }
+
+  .contents > img {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    opacity: 0.5;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .contents > h3 {
+    grid-column: 4 / span 1;
+    grid-row: 2 / span 1;
+    font-size: 1.5em;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .contents > h4 {
+    grid-column: 4 / span 1;
+    grid-row: 4 / span 2;
+    font-size: 1.2em;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
   }

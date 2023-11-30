@@ -5,8 +5,6 @@ import './fonts.css'
 import data from './Data.json';
 
 function Link() {
-
-      
     return (
         <div>
       {data.map((item, index) => (
@@ -15,20 +13,20 @@ function Link() {
           key={index}
           onClick={() => window.open(item.link, "_blank")}
         >
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              flex: 1,
-            }}
+          <div className='contents'
+            // style={{
+            //   display: 'flex',
+            //   justifyContent: 'center',
+            //   alignItems: 'center',
+            //   flex: 1,
+            // }}
           >
             <img
               src={item.img}
               alt={item.name}
-              style={{ width: '1.6em', marginRight: '0.4em' }}
             />
-            <span>{item.name}</span>
+            <h3>{item.name}</h3>
+            <h4>{item.description}</h4>
           </div>
         </button>
       ))}

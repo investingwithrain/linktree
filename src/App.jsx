@@ -5,6 +5,7 @@ import Link from './Link.jsx';
 import logo from '/rainishere_s.png'
 import './fonts.css'
 import data from './Data.json';
+import social from './Social.json';
 
 
 function App() {
@@ -12,15 +13,29 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className='logo-title'>
         <a href="https://www.youtube.com/channel/UC7v5yfvZhs-d5opF575AEhA" target="_blank">
           <img src={logo} className="logo" alt="Rainishere logo" />
         </a>
+        <div className='title'>Rainishere</div>
       </div>
-      <div className='title'>Rainishere</div>
+      <div className='social-media'>
+
+      {social.map((item, index) => (
+        <button
+          className="social-media-button"
+          key={index}
+          onClick={() => window.open(item.link, "_blank")}
+        >
+          <img
+              src={item.img}
+              alt={item.name}
+            />
+        </button>
+      ))}
+      </div>
       <div className="card">
         <Link />
-        
       </div>
       <p className="read-the-docs">以上的{data.length}個連結是RainIsHere的真實社交平台及獨家優惠連結，其他沒有登記的平台及連結全部屬於虛假帳戶或假平台，請大家小心騙徒喔！</p>
     </>

@@ -1,0 +1,26 @@
+[
+    {
+        "name": "YouTube",
+        "description": "RainIsHere YouTube頻道",
+        "img": "https://i.ibb.co/pbJVJ1q/youtube.png",
+        "link": "https://www.youtube.com/channel/UC7v5yfvZhs-d5opF575AEhA/"
+      },
+      {
+        "name": "Threads",
+        "description": "RainIsHere Threads頻道",
+        "img": "https://i.ibb.co/j8FPBK5/threads-logo-E9-BA734-BF6-seeklogo-com.png",
+        "link": "https://www.threads.net/@rainishere20?igshid=MzRlODBiNWFlZA=="
+      },
+      {
+        "name": "Patreon",
+        "description": "RainIsHere Patreon",
+        "img": "https://i.ibb.co/qrtWjwz/patreon.png",
+        "link": "https://www.patreon.com/rainishere"
+      },
+      {
+        "name": "Facebook",
+        "description": "RainIsHere Facebook專頁",
+        "img": "https://i.ibb.co/m6mCqfc/facebook.png",
+        "link": "https://www.facebook.com/profile.php?id=100063891051783"
+      }
+]

@@ -5,7 +5,10 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: linear-gradient(to top right, #414141, #000000);
+  background:
+        linear-gradient(to bottom left, #cbd8fc, transparent),
+        linear-gradient(to bottom right, #faf9dc, transparent);
+  background-blend-mode: screen;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

@@ -1,46 +1,32 @@
 [
- {
-    "name": "YouTube",
-    "img": "https://i.ibb.co/2v1hJKp/youtube-1.png",
-    "link": "https://www.youtube.com/channel/UC7v5yfvZhs-d5opF575AEhA/"
-  },
-  {
-    "name": "Threads",
-    "img": "https://i.ibb.co/j8FPBK5/threads-logo-E9-BA734-BF6-seeklogo-com.png",
-    "link": "https://www.threads.net/@rainishere20?igshid=MzRlODBiNWFlZA=="
-  },
+ 
   {
     "name": "Rain的書單",
+    "description": "Rain的書單",
     "img": "https://i.ibb.co/Zzsj5Kw/graduate.png",
     "link": "https://www.investingwithrain.com/pages/rain"
   },
   {
-    "name": "Patreon",
-    "img": "https://i.ibb.co/pLbrYXY/patreon-1.png",
-    "link": "https://www.patreon.com/rainishere"
-  },
-  {
-    "name": "Facebook",
-    "img": "https://i.ibb.co/XzZWyzz/facebook-app-symbol.png",
-    "link": "https://www.facebook.com/profile.php?id=100063891051783"
-  },
-  {
     "name": "RainIsHere 課程",
+    "description": "RainIsHere 課程",
     "img": "https://i.ibb.co/Zzsj5Kw/graduate.png",
     "link": "https://www.investingwithrain.com/collections"
   },
   {
-    "name": "SaxoBank盛寶 (國際證券買賣+國際離岸戶)",
+    "name": "SaxoBank盛寶",
+    "description": "國際證券買賣+香港戶",
     "img": "https://i.ibb.co/TmHLznx/New-Logo-dark-blue-background.png",
     "link": "https://ad.doubleclick.net/ddm/clk/505346021;312961192;v"
   },
   {
-    "name": "SaxoBank盛寶 (國際證券買賣+香港戶)",
+    "name": "SaxoBank盛寶",
+    "description": "國際證券買賣+香港戶",
     "img": "https://i.ibb.co/TmHLznx/New-Logo-dark-blue-background.png",
     "link": "https://ad.doubleclick.net/ddm/clk/505677034;312961192;g"
   },
   {
-    "name": "Firstrade(美股及ETFs/美股$0手續費+離岸)",
+    "name": "Firstrade",
+    "description": "美股及ETFs/美股$0手續費+離岸",
     "img": "https://i.ibb.co/ZgwvpPg/bullish.png",
     "link": "https://affiliate.firstrade.com/affiliate/idevaffiliate.php?id=1074"
   }
