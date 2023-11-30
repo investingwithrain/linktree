@@ -15,8 +15,8 @@
   } */
 
   .link {
-    width: 400px;
-    height: 200px;
+    width: 320px;
+    height: 180px;
     margin: 16px;
     border-radius: 16px;
     background-color: rgba(255, 255, 255, 0.3);
@@ -34,8 +34,8 @@
 
   .contents {
     display: grid;
-    grid-template-columns: 24px 40px 16px auto 24px;
-    grid-template-rows: 32px 40px 16px 80px 32px;
+    grid-template-columns: 16px 40px 16px auto 16px;
+    grid-template-rows: 32px 40px 16px 60px 32px;
     align-items: start; 
     justify-items: start; 
   }
