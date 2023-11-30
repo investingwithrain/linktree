@@ -1,18 +1,33 @@
 [
-  {
-    "name": "RainIsHere 課程(豬豬成為專業投資者必學的7大課)",
-    "img": "https://i.ibb.co/Zzsj5Kw/graduate.png",
-    "link": "https://www.investingwithrain.com/courses/7majors"
+ {
+    "name": "YouTube",
+    "img": "https://i.ibb.co/2v1hJKp/youtube-1.png",
+    "link": "https://www.youtube.com/channel/UC7v5yfvZhs-d5opF575AEhA/"
   },
   {
-    "name": "RainIsHere 課程(豬豬\"被動收息\"投資教學)",
-    "img": "https://i.ibb.co/Zzsj5Kw/graduate.png",
-    "link": "https://www.investingwithrain.com/courses/passiveincome"
+    "name": "Threads",
+    "img": "https://i.ibb.co/j8FPBK5/threads-logo-E9-BA734-BF6-seeklogo-com.png",
+    "link": "https://www.threads.net/@rainishere20?igshid=MzRlODBiNWFlZA=="
   },
   {
-    "name": "RainIsHere 課程(🏆豬豬成為超級投資者必學的八大課🏆)",
+    "name": "Rain的書單",
     "img": "https://i.ibb.co/Zzsj5Kw/graduate.png",
-    "link": "https://www.investingwithrain.com/bundles/super8"
+    "link": "https://www.investingwithrain.com/pages/rain"
+  },
+  {
+    "name": "Patreon",
+    "img": "https://i.ibb.co/pLbrYXY/patreon-1.png",
+    "link": "https://www.patreon.com/rainishere"
+  },
+  {
+    "name": "Facebook",
+    "img": "https://i.ibb.co/XzZWyzz/facebook-app-symbol.png",
+    "link": "https://www.facebook.com/profile.php?id=100063891051783"
+  },
+  {
+    "name": "RainIsHere 課程",
+    "img": "https://i.ibb.co/Zzsj5Kw/graduate.png",
+    "link": "https://www.investingwithrain.com/collections"
   },
   {
     "name": "SaxoBank盛寶 (國際證券買賣+國際離岸戶)",
@@ -29,29 +44,4 @@
     "img": "https://i.ibb.co/ZgwvpPg/bullish.png",
     "link": "https://affiliate.firstrade.com/affiliate/idevaffiliate.php?id=1074"
   },
-  {
-    "name": "YouTube",
-    "img": "https://i.ibb.co/2v1hJKp/youtube-1.png",
-    "link": "https://www.youtube.com/channel/UC7v5yfvZhs-d5opF575AEhA/"
-  },
-  {
-    "name": "Patreon",
-    "img": "https://i.ibb.co/pLbrYXY/patreon-1.png",
-    "link": "https://www.patreon.com/rainishere"
-  },
-  {
-    "name": "Facebook",
-    "img": "https://i.ibb.co/XzZWyzz/facebook-app-symbol.png",
-    "link": "https://www.facebook.com/profile.php?id=100063891051783"
-  },
-  {
-    "name": "Threads",
-    "img": "https://i.ibb.co/j8FPBK5/threads-logo-E9-BA734-BF6-seeklogo-com.png",
-    "link": "https://www.threads.net/@rainishere20?igshid=MzRlODBiNWFlZA=="
-  },
-  {
-    "name": "Rain的書單",
-    "img": "https://i.ibb.co/Zzsj5Kw/graduate.png",
-    "link": "https://www.investingwithrain.com/pages/rain"
-  }
 ]
