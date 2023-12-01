@@ -86,8 +86,7 @@
 .read-the-docs {
   color: #000000;
   font-family: 'Roboto', sans-serif;
-  width: 80vw;
   min-width: 256px;
   margin: 1em;
-  text-align: start;
+  text-align: center;
 }
