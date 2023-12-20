@@ -13,11 +13,11 @@
   linear-gradient(to bottom, #ffeeb4, transparent),
   linear-gradient(to left, #faf9dc, transparent);
 
-  background-image: url('/yellow_flowers_s.jpg');
+  /* background-image: url('/yellow_flowers_s.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-blend-mode: screen;
+  background-blend-mode: screen; */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -39,6 +39,19 @@ body {
   padding: 0px;
   min-width: 320px;
   min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('/yellow_flowers_s.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
 }
 
 h1 {
