@@ -2,8 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import "@fontsource/roboto"; // Defaults to weight 400.
 import Link from './Link.jsx';
+import Blogs from './blogs.jsx';
 import logo from '/rainishere_s.png'
-import background from '/wood_texture_s.jpg'
 import './fonts.css'
 import data from './Data.json';
 import social from './Social.json';
@@ -36,9 +36,8 @@ function App() {
         </button>
     ))}
     </div>
-    <div className="card">
+      <Blogs />
       <Link />
-    </div>
     <p className="read-the-docs">以上的{data.length}個連結是RainIsHere的真實社交平台及獨家優惠連結，其他沒有登記的平台及連結全部屬於虛假帳戶或假平台，請大家小心騙徒喔！</p>
     
     </>

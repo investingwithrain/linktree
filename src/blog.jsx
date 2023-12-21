@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import './blog.css';
+import {Button} from '@mui/material';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+// import {markdown} from './blogContents';
 
-function BlogPost({ title, content, buttonText }) {
+
+function Blog() {
+
+
+    const location = useLocation();
+    const { title, content, link, linkName } = location.state;
+    const [markdown, setMarkdown] = useState('');
+
+    useEffect(() => {
+        fetch('./blog.md')
+        .then(response => response.text())
+        .then(text => setMarkdown(text));
+    }, []);
+
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100vh' }}>
+        <div className='blog-content'>
             <h1>{title}</h1>
-            <p>{content}</p>
-            <button style={{ alignSelf: 'flex-end' }}>{buttonText}</button>
+            {/* <div dangerouslySetInnerHTML={{ __html: htmlContent }} /> */}
+            <Markdown remarkPlugins={[remarkGfm]}>{markdown}</Markdown>
+            <Button
+            variant="contained"
+                onClick={() => window.open(link, "_blank")}
+            >{linkName}</Button>
         </div>
     );
 }
 
-export default BlogPost;
+export default Blog;

@@ -16,9 +16,9 @@
 
   .link {
     width: 240px;
-    height: 135px;
+    height: 240px;
     margin: 16px;
-    border-radius: 16px;
+    border-radius: 8px;
     background-color: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(10px); 
     color: #000;
@@ -32,7 +32,43 @@
     border: transparent;
   }
 
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
   .contents {
+    display: grid;
+    grid-template-rows:  32px 32px auto ;
+    place-items: center;
+  }
+
+  .contents > img {
+    grid-row: 1 / span 1;
+    opacity: 0.5;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+
+  .contents > h3 {
+    grid-row: 2 / span 1;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .contents > h4 {
+    grid-row: 3 / span 1;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* .contents {
     display: grid;
     grid-template-columns: 12px 32px 8px auto 12px;
     grid-template-rows: 16px 32px 8px 63px 16px;
@@ -66,4 +102,4 @@
     text-align: start;
     margin: 0;
     padding: 0;
-  }
+  } */
