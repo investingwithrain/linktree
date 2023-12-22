@@ -7,15 +7,28 @@ import { useNavigate } from 'react-router-dom';
 
 function Blogs() {
   const navigate = useNavigate();
+  const item = blog.list[blog.showThisInLinktree];
+  if (item === undefined) {
+    return (
+      <></>
+    )
+  }
     return (
         <div className='blogs'>
-      {blog.map((item, index) => (
         <button
           className="blogs-item"
-          key={index}
+          key={item.folder}
           style={{ backgroundImage: `url(${item.img})`,
           backgroundPosition: 'center' }}
-          onClick={() => navigate('/blog', { state: { title: item.name, content: item.description, link: item.link, linkName: item.linkName } })}
+            onClick={() => {
+            navigate('/blog', { state: { 
+              description:item.description,
+              img:item.img,
+              folder:item.folder,
+              md:item.md,
+              link:item.link,
+              linkName:item.linkName } });
+          }}
           >
           <div className='blogs-contents'
           >
@@ -27,7 +40,6 @@ function Blogs() {
             <h4>{item.description}</h4> */}
           </div>
         </button>
-      ))}
     </div>
         
     )
