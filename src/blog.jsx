@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import './blog.css';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import blog from './blog.json';
 // import {markdown} from './blogContents';
 
 
@@ -10,17 +11,17 @@ function Blog() {
 
     const baseUrl = 'https://raw.githubusercontent.com/investingwithrain/blog_src/main';
 
-    const location = useLocation();
+    const { folder } = useParams();
+    const item = blog.list[folder];
     const [markdown, setMarkdown] = useState('');
-    const { description:description, img:img, folder:folder, md:md, link:link, linkName:linkName} = location.state;
 
 
     useEffect(() => {
-        fetch(`${baseUrl}/${folder}/${md}`)
+        fetch(`${baseUrl}/${item.folder}/${item.md}`)
         .then(response => response.text())
         .then(text => {
             // console.log(`${baseUrl}/${folder}/${md}`);
-            const preurl = `${baseUrl}/${folder}/`;
+            const preurl = `${baseUrl}/${item.folder}/`;
             const updatedText = text.replace(/!\[(.*?)\]\((.*?)\)/g, `![$1](${preurl}$2)`);
             setMarkdown(updatedText);
         });
@@ -28,11 +29,11 @@ function Blog() {
     return (
 
         <div className='blog-content'>
-            <h1>{description}</h1>
+            <h1>{item.description}</h1>
             <Markdown remarkPlugins={[remarkGfm]}>{markdown}</Markdown>
             <button
-                onClick={() => window.open(link, "_blank")}
-            >{linkName}</button>
+                onClick={() => window.open(item.link, "_blank")}
+            >{item.linkName}</button>
         </div>
     );
 }

@@ -21,13 +21,7 @@ function Blogs() {
           style={{ backgroundImage: `url(${item.img})`,
           backgroundPosition: 'center' }}
             onClick={() => {
-            navigate('/blog', { state: { 
-              description:item.description,
-              img:item.img,
-              folder:item.folder,
-              md:item.md,
-              link:item.link,
-              linkName:item.linkName } });
+            navigate(`/blog/${item.folder}`);
           }}
           >
           <div className='blogs-contents'
