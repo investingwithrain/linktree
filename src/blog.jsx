@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './blog.css';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import blog from './blog.json';
-// import {markdown} from './blogContents';
-
 
 function Blog() {
 
