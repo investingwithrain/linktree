@@ -13,7 +13,7 @@ function Blog() {
     const item = blog.list[folder];
     const [markdown, setMarkdown] = useState('');
 
-    if (item.published === false) {
+    if (item.published === false && blog.showThisInLinktree !== folder) {
         return (
             <></>
         )
