@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './blog.css';
-import {Button} from '@mui/material';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 // import {markdown} from './blogContents';
@@ -31,10 +30,9 @@ function Blog() {
         <div className='blog-content'>
             <h1>{description}</h1>
             <Markdown remarkPlugins={[remarkGfm]}>{markdown}</Markdown>
-            <Button
-            variant="contained"
+            <button
                 onClick={() => window.open(link, "_blank")}
-            >{linkName}</Button>
+            >{linkName}</button>
         </div>
     );
 }
