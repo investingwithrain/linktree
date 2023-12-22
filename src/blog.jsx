@@ -13,6 +13,11 @@ function Blog() {
     const item = blog.list[folder];
     const [markdown, setMarkdown] = useState('');
 
+    if (item.published === false) {
+        return (
+            <></>
+        )
+    }
 
     useEffect(() => {
         fetch(`${baseUrl}/${item.folder}/${item.md}`)
