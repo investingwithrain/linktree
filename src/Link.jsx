@@ -2,10 +2,8 @@ import React from 'react';
 import "@fontsource/roboto"; // Defaults to weight 400.
 import './Link.css'
 import './fonts.css'
-import data from './Data.json';
-import { useNavigate } from 'react-router-dom';
 
-function Link() {
+function Link({ data}) {
     return (
         <div className='card'>
       {data.map((item, index) => (

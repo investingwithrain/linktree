@@ -75,7 +75,7 @@ body::before {
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: url('/yellow_flowers_s.jpg');
+  background-image: url('/background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   z-index: -1;

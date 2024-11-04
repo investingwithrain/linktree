@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
+import AppThread from "./AppThread.jsx";
+import AppInstagram from "./AppInstagram.jsx";
 import Blog from "./blog.jsx";
 import "./index.css";
 // import backgroundVideo from '/background.webm'
@@ -21,14 +23,11 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* <div class="video-background">
-  <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-      <source src={backgroundVideo} type="video/webm"/>
-  </video>
-</div> */}
     <HashRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/thread" element={<AppThread />} />
+        <Route path="/instagram" element={<AppInstagram />} />
         <Route path="/blog/:folder" element={<Blog />} />
       </Routes>
     </HashRouter>

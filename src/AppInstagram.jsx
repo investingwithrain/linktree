@@ -1,14 +1,16 @@
+import { useState } from 'react'
 import './App.css'
 import "@fontsource/roboto"; // Defaults to weight 400.
 import Link from './Link.jsx';
 import Blogs from './blogs.jsx';
 import logo from '/rainishere_s.png'
 import './fonts.css'
-import data from './Data.json';
+import data from './DataInstagram.json';
 import social from './Social.json';
 
 
 function App() {
+  const [count, setCount] = useState(0)
 
   return (
     <>
