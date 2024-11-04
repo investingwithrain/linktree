@@ -55,8 +55,8 @@
   width: 56px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.5);
-  -webkit-backdrop-filter: blur(14px)!important;
-  backdrop-filter: blur(14px)!important;
+  -webkit-backdrop-filter: blur(10px)!important;
+  backdrop-filter: blur(10px)!important;
   cursor: pointer;
   transition: cubic-bezier(0.23, 1, 0.32, 1) 500ms;
 }
