@@ -4,7 +4,7 @@ import Link from './Link.jsx';
 import Blogs from './blogs.jsx';
 import logo from '/rainishere_s.png'
 import './fonts.css'
-import data from './Data.json';
+import data from './DataInstagram.json';
 import social from './Social.json';
 
 
