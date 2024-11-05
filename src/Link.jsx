@@ -9,7 +9,8 @@ function Link({ data, page}) {
     // Push an event to the dataLayer
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-      event: 'button_click_'+page,
+      event: 'button_click',
+      source: page,
       link: item.link,
       name: item.name,
       description: item.description,
