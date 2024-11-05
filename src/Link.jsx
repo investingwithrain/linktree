@@ -7,13 +7,13 @@ function Link({ data, page}) {
 
   const handleClick = (item) => {
     // Push an event to the dataLayer
-    // window.dataLayer = window.dataLayer || [];
-    // window.dataLayer.push({
-    //   event: 'button_click_'+page,
-    //   link: item.link,
-    //   name: item.name,
-    //   description: item.description,
-    // });
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'button_click_'+page,
+      link: item.link,
+      name: item.name,
+      description: item.description,
+    });
 
     // Open the link in a new tab
     window.open(item.link, "_blank");
