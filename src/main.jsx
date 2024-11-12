@@ -7,6 +7,7 @@ import Blog from "./blog.jsx";
 import "./index.css";
 // import backgroundVideo from '/background.webm'
 import { HashRouter, Routes, Route } from "react-router-dom";
+import GA4 from "./GA4.jsx";
 
 // const router = createBrowserRouter([
 //   {
@@ -28,6 +29,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/" element={<App />} />
         <Route path="/thread" element={<AppThread />} />
         <Route path="/instagram" element={<AppInstagram />} />
+        <Route path="/ga4" element={<GA4 />} />
         <Route path="/blog/:folder" element={<Blog />} />
       </Routes>
     </HashRouter>
