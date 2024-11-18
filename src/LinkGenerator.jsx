@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { collection, addDoc, updateDoc, doc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  doc,
+  getDocs,
+} from "firebase/firestore";
 import { db } from "./main.jsx";
 import "./LinkGenerator.css";
 import {
@@ -11,7 +17,7 @@ import {
   List,
   ListItem,
   ListItemText,
-  Divider
+  Divider,
 } from "@mui/material";
 import ga4Keys from "./ga4.json";
 
@@ -47,6 +53,9 @@ function LinkGenerator() {
       utm_content: utmContent,
     });
 
+    //add log
+    console.log(utmParams);
+
     const url = `https://links.investingwithrain.com/#/ga4?${utmParams.toString()}`;
     setUrl(url);
 
@@ -75,7 +84,18 @@ function LinkGenerator() {
     }
   };
 
-  if(history.length === 0) {
+  const copyToClipboard = () => {
+    navigator.clipboard
+      .writeText(shortLink)
+      .then(() => {
+        alert("Short link copied to clipboard!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
+      });
+  };
+
+  if (history.length === 0) {
     fetchHistory();
   }
 
@@ -87,6 +107,7 @@ function LinkGenerator() {
         </Typography>
         <form
           onSubmit={(e) => {
+            console.log("submit");
             e.preventDefault();
             generateUrl();
           }}
@@ -106,12 +127,13 @@ function LinkGenerator() {
               color="primary"
               value={utmSource}
               required
-              exclusive
               onChange={(e) => setUtmSource(e.target.value)}
               aria-label="Source"
             >
               {sourceKeys.map((source) => (
-                <ToggleButton value={source}>{source}</ToggleButton>
+                <ToggleButton key={source} value={source}>
+                  {source}
+                </ToggleButton>
               ))}
             </ToggleButtonGroup>
           </div>
@@ -120,12 +142,13 @@ function LinkGenerator() {
               color="primary"
               value={utmMedium}
               required
-              exclusive
               onChange={(e) => setUtmMedium(e.target.value)}
               aria-label="Medium"
             >
               {mediumKeys.map((medium) => (
-                <ToggleButton value={medium}>{medium}</ToggleButton>
+                <ToggleButton key={medium} value={medium}>
+                  {medium}
+                </ToggleButton>
               ))}
             </ToggleButtonGroup>
           </div>
@@ -158,18 +181,19 @@ function LinkGenerator() {
               onChange={(e) => setUtmContent(e.target.value)}
             />
           </div>
-          <Button variant="contained" size="large">
+          <Button type="submit" variant="contained" size="large">
             Generate URL
           </Button>
         </form>
         {shortLink && (
           <div className="generated-link">
-            <Typography variant="h3" gutterBottom>
-              Generated URL:
-            </Typography>
-            <Typography variant="h2" gutterBottom>
+            <Button
+              variant="contained"
+              size="large"
+              onClick={() => copyToClipboard()}
+            >
               {shortLink}
-            </Typography>
+            </Button>
           </div>
         )}
       </div>
@@ -177,55 +201,29 @@ function LinkGenerator() {
         <Typography variant="h2" gutterBottom>
           History
         </Typography>
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        <List
+          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+        >
+          {history.map((link) => (
+            <ListItem alignItems="flex-start">
+              <ListItemText
+                primary={link.utmSource + " - " + link.utmMedium}
+                secondary={
+                  <React.Fragment>
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      sx={{ color: "text.primary", display: "inline" }}
+                    >
+                      "Shortlink:"
+                    </Typography>
+                    {` - https://links.investingwithrain.com/#/ga4?code=${link.id}`}
+                  </React.Fragment>
+                }
+              />
+            </ListItem>
+          ))}
         </List>
-
-        {history.map((link) => (
-          // <div key={link.id} className="history-item">
-          //   <div className="history-item-header">
-          // <Typography variant="p" gutterBottom>
-          //   Source:
-          // </Typography>
-          //   <Typography variant="h4" gutterBottom>
-          //     {link.utmSource}
-          //   </Typography>
-          //   </div>
-          //   <div className="history-item-header">
-          // <Typography variant="p" gutterBottom>
-          //   Medium:
-          // </Typography>
-          //   <Typography variant="h4" gutterBottom>
-          //     {link.utmMedium}
-          //   </Typography>
-          //   </div>
-          //   <div className="history-item-header">
-          // <Typography variant="p" gutterBottom>
-          //   Shortlink:
-          // </Typography>
-          //   <Typography variant="h4" gutterBottom>
-          //     {`https://links.investingwithrain.com/#/ga4?code=${link.id}`}
-          //   </Typography>
-          //   </div>
-          // </div>
-
-          <ListItem alignItems="flex-start">
-        <ListItemText
-          primary={link.utmSource + " - " + link.utmMedium}
-          secondary={
-            <React.Fragment>
-              <Typography
-                component="span"
-                variant="body2"
-                sx={{ color: 'text.primary', display: 'inline' }}
-              >
-                "Shortlink:"
-              </Typography>
-              {` - https://links.investingwithrain.com/#/ga4?code=${link.id}`}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-        ))}
       </div>
     </div>
   );
