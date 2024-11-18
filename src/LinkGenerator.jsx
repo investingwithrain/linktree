@@ -45,7 +45,21 @@ function LinkGenerator() {
   };
 
   const generateUrl = async () => {
+
+    try {
+      const docRef = await addDoc(collection(db, "Links"), {
+        redirectUrl: redirectUrl,
+        utmSource: utmSource,
+        utmMedium: utmMedium,
+        utmCampaign: utmCampaign,
+        utmTerm: utmTerm,
+        utmContent: utmContent,
+      });
+
+
+
     const utmParams = new URLSearchParams({
+      code: docRef.id,
       utm_source: utmSource,
       utm_medium: utmMedium,
       utm_campaign: utmCampaign,
@@ -59,20 +73,10 @@ function LinkGenerator() {
     const url = `https://links.investingwithrain.com/#/ga4?${utmParams.toString()}`;
     setUrl(url);
 
-    try {
-      const docRef = await addDoc(collection(db, "Links"), {
-        url: url,
-        redirectUrl: redirectUrl,
-        utmSource: utmSource,
-        utmMedium: utmMedium,
-        utmCampaign: utmCampaign,
-        utmTerm: utmTerm,
-        utmContent: utmContent,
-      });
-
       // Update the document with the docRef.id value
       await updateDoc(doc(db, "Links", docRef.id), {
-        id: docRef.id,
+        code: docRef.id,
+        url: url,
       });
 
       // Set the short link
@@ -84,9 +88,9 @@ function LinkGenerator() {
     }
   };
 
-  const copyToClipboard = () => {
+  const copyToClipboard = (text) => {
     navigator.clipboard
-      .writeText(shortLink)
+      .writeText(text)
       .then(() => {
         alert("Short link copied to clipboard!");
       })
@@ -190,7 +194,7 @@ function LinkGenerator() {
             <Button
               variant="contained"
               size="large"
-              onClick={() => copyToClipboard()}
+              onClick={() => copyToClipboard(shortLink)}
             >
               {shortLink}
             </Button>
@@ -202,10 +206,11 @@ function LinkGenerator() {
           History
         </Typography>
         <List
-          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+          sx={{ width: "100%", bgcolor: "background.paper" }}
         >
           {history.map((link) => (
-            <ListItem alignItems="flex-start">
+            <ListItem alignItems="flex-start"             onClick={() => copyToClipboard(`https://links.investingwithrain.com/#/ga4?code=${link.code}`)}
+>
               <ListItemText
                 primary={link.utmSource + " - " + link.utmMedium}
                 secondary={
@@ -217,7 +222,7 @@ function LinkGenerator() {
                     >
                       "Shortlink:"
                     </Typography>
-                    {` - https://links.investingwithrain.com/#/ga4?code=${link.id}`}
+                    {` - https://links.investingwithrain.com/#/ga4?code=${link.code}`}
                   </React.Fragment>
                 }
               />

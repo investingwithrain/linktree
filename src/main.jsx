@@ -37,7 +37,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/" element={<App source="None" />} />
         <Route path="/thread" element={<App source="thread" />} />
         <Route path="/instagram" element={<App source="instagram" />} />
-        <Route path="/ga4" element={<GA4 />} />
+        <Route path="/ga4" element={<GA4/>} />
         <Route path="/blog/:folder" element={<Blog />} />
         <Route path="/link-generator" element={<LinkGenerator />} />
       </Routes>
