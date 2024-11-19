@@ -15,11 +15,16 @@ import {
   ToggleButtonGroup,
   ToggleButton,
   List,
+  LinearProgress,
+  Box,
+  Tooltip,
   ListItem,
+  IconButton,
   ListItemText,
   Divider,
 } from "@mui/material";
 import ga4Keys from "./ga4.json";
+import LinkIcon from '@mui/icons-material/Link';
 
 function LinkGenerator() {
   const sourceKeys = ga4Keys.source;
@@ -34,6 +39,8 @@ function LinkGenerator() {
   const [utmContent, setUtmContent] = useState("");
   const [shortLink, setShortLink] = useState("");
   const [history, setHistory] = useState([]);
+  const [loading, setLoading] = useState(false);
+
 
   const fetchHistory = async () => {
     const querySnapshot = await getDocs(collection(db, "Links"));
@@ -45,7 +52,7 @@ function LinkGenerator() {
   };
 
   const generateUrl = async () => {
-
+    setLoading(true);
     try {
       const docRef = await addDoc(collection(db, "Links"), {
         redirectUrl: redirectUrl,
@@ -86,6 +93,8 @@ function LinkGenerator() {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
+
+    setLoading(false);
   };
 
   const copyToClipboard = (text) => {
@@ -104,7 +113,7 @@ function LinkGenerator() {
   }
 
   return (
-    <div>
+    <div style={{margin:'5vw', display: 'flex', flexDirection: 'column', gap: '20px' }}>
       <div className="form-container">
         <Typography variant="h2" gutterBottom>
           UTM Generator for GA4
@@ -185,31 +194,57 @@ function LinkGenerator() {
               onChange={(e) => setUtmContent(e.target.value)}
             />
           </div>
-          <Button type="submit" variant="contained" size="large">
+          <Button type="submit" variant="outlined" size="large">
             Generate URL
           </Button>
         </form>
         {shortLink && (
-          <div className="generated-link">
+          <Box className="generated-link" style={{margin:"10px", display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <Tooltip title="Copy Link">
             <Button
               variant="contained"
               size="large"
               onClick={() => copyToClipboard(shortLink)}
             >
-              {shortLink}
+              Copy Generated Link
             </Button>
-          </div>
+          </Tooltip>
+
+          <Tooltip title="Test Link">
+              <Button
+                variant="contained"
+                color="red"
+                size="large"
+                onClick={() => window.location.href=shortLink}
+              >
+                Test Generated Link
+              </Button>
+            </Tooltip>
+          </Box>
         )}
+        {loading && (
+          <Box sx={{ width: '100%', marginTop: '20px' }}>
+          <LinearProgress />
+        </Box>
+          )}
       </div>
       <div className="form-container">
         <Typography variant="h2" gutterBottom>
           History
         </Typography>
         <List
-          sx={{ width: "100%", bgcolor: "background.paper" }}
+          sx={{ width: "100%", bgcolor: "background.paper", gap: "10px" }}
         >
           {history.map((link) => (
-            <ListItem alignItems="flex-start"             onClick={() => copyToClipboard(`https://links.investingwithrain.com/#/ga4?code=${link.code}`)}
+            <div>
+            <ListItem alignItems="flex-start"       
+            
+            secondaryAction={
+              <IconButton edge="end" aria-label="comments">
+                <LinkIcon />
+              </IconButton>
+            }
+            onClick={() => copyToClipboard(`https://links.investingwithrain.com/#/ga4?code=${link.code}`)}
 >
               <ListItemText
                 primary={link.utmSource + " - " + link.utmMedium}
@@ -227,6 +262,9 @@ function LinkGenerator() {
                 }
               />
             </ListItem>
+                  <Divider variant="middle" component="li" />
+                  </div>
+
           ))}
         </List>
       </div>
