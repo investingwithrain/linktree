@@ -40,7 +40,10 @@ function GA4() {
     fetchDocument();
   }, [code, source]);
 
-  return null; // This component doesn't need to render anything
-}
+  return (
+    <div style={{ backgroundColor: 'black', width: '100vw', height: '100vh' }}>
+      {/* This component doesn't need to render anything else */}
+    </div>
+  );}
 
 export default GA4;
