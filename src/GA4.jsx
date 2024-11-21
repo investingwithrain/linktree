@@ -13,20 +13,32 @@ function GA4() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const code = searchParams.get('code');
-  const source = searchParams.get('utm_source');
 
   useEffect(() => {
     const fetchDocument = async () => {
       if (code) {
         const docRef = doc(db, 'Links', code);
         const docSnap = await getDoc(docRef);
+        const data = docSnap.data();
+
+
+        if (window.gtag) {
+          // Send the UTM parameters as a custom event to Google Analytics
+          window.gtag("event", "utm_parameters", {
+            utm_source: data.utmSource || "(not set)",
+            utm_medium: data.utmMedium || "(not set)",
+            utm_campaign: data.utmCampaign || "(not set)",
+            utm_term: data.utmTerm || "(not set)",
+            utm_content: data.utmContent || "(not set)",
+          });
+
+          console.log("Logged UTM params to Google Analytics:", data);
+        } else {
+          console.warn("Google Analytics (gtag) is not initialized");
+        }
 
         if (docSnap.exists()) {
-          if (source) {
-            window.location.href = docSnap.data().redirectUrl;
-          } else {
-            window.location.href = docSnap.data().url;
-          }
+            window.location.href = data.redirectUrl;
         } else {
           console.log('No such document!');
         //   window.location.href = 'https://www.investingwithrain.com';
@@ -38,7 +50,7 @@ function GA4() {
     };
 
     fetchDocument();
-  }, [code, source]);
+  }, [code]);
 
   return (
     <div style={{ backgroundColor: 'black', width: '100vw', height: '100vh' }}>
