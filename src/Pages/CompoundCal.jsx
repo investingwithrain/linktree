@@ -134,6 +134,8 @@ const CompoundCal = () => {
         <Button variant="contained" style={{ backgroundColor: '#ee9b00', color: '#001219' }} onClick={resetToInitValue}>
           Reset
         </Button>
+        <br />
+        <br />
       </Box>
     </Container>
     </ThemeProvider>
