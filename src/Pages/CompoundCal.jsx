@@ -54,9 +54,12 @@ const CompoundCal = () => {
 
     <Container maxWidth="sm">
       <Box sx={{ mt: 4 }}>
-        <Typography variant="h4" component="h1" color="black"  gutterBottom>
+        {/* <Typography variant="h4" component="h1" color="black"  gutterBottom>
           Compound Calculator
-        </Typography>
+        </Typography> */}
+
+        <br />
+        <br />
         <Box sx={{ mb: 2 }}>
           <TextField
             label="Initial Investment"
