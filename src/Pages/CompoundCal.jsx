@@ -21,7 +21,7 @@ const CompoundCal = () => {
       const theme = createTheme({
         typography: {
           allVariants: {
-            fontFamily: 'MElle HKS Xbold',
+            fontFamily: 'MElleHK-Xbold',
             textTransform: 'none',
           },
         },
