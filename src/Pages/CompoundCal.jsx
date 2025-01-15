@@ -58,8 +58,6 @@ const CompoundCal = () => {
           Compound Calculator
         </Typography> */}
 
-        <br />
-        <br />
         <Box sx={{ mb: 2 }}>
           <TextField
             label="Initial Investment"
