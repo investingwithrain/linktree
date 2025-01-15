@@ -8,7 +8,7 @@
     backdrop-filter: blur(10px); 
     color: #000;
     font-size: 1.4em;
-    font-family: 'Roboto', sans-serif;
+    font-family: "MElle HKS Xbold";
     cursor: pointer;
     margin-bottom: 0.6em;
     transition: cubic-bezier(0.23, 1, 0.32, 1) 500ms;
@@ -58,7 +58,7 @@
 
   .blogs-contents > h3 {
     grid-row: 2 / span 1;
-    font-family: 'Roboto', sans-serif;
+    font-family: "MElle HKS Xbold";
     text-align: center;
     margin: 0;
     padding: 0;
@@ -66,7 +66,7 @@
 
   .blogs-contents > h4 {
     grid-row: 3 / span 1;
-    font-family: 'Roboto', sans-serif;
+    font-family: "MElle HKS Xbold";
     text-align: center;
     margin: 0;
     padding: 0;

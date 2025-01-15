@@ -7,10 +7,12 @@ import "./index.css";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import GA4 from "./GA4.jsx";
 import LinkGenerator from "./LinkGenerator.jsx";
+import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore'; // Correct import for getFirestore
+import CompoundCal from "./Pages/CompoundCal.jsx";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -30,6 +32,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
+
+// Register components
+ChartJS.register(
+  CategoryScale,  // This is where the "category" scale is registered
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HashRouter>
@@ -40,6 +54,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/ga4" element={<GA4/>} />
         <Route path="/blog/:folder" element={<Blog />} />
         <Route path="/link-generator" element={<LinkGenerator />} />
+        <Route path="/calculator" element={<CompoundCal />} />
       </Routes>
     </HashRouter>
   </React.StrictMode>

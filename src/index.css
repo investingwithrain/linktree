@@ -1,7 +1,7 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: "MElle HKS Xbold";
   line-height: 1.5;
-  font-weight: 400;
   margin: 0px;
   padding: 0px;
 
@@ -75,11 +75,20 @@ body::before {
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: url('/background.jpg');
+  /* background-image: url('/background2.jpg'); */
   background-size: cover;
   background-repeat: no-repeat;
   z-index: -1;
-  animation: zoomInOut 30s infinite;
+  /* animation: rotate 30s infinite; */
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes zoomInOut {
