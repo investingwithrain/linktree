@@ -29,8 +29,7 @@ const CompoundCal = () => {
 
 
   // Declare the const and add the material UI style
-  const CssTextField = withStyles({
-    root: {
+  const CssTextField = {
       '& label.Mui-focused': {
         color: 'grey',
       },
@@ -48,8 +47,7 @@ const CompoundCal = () => {
           borderColor: 'black',
         },
       },
-    },
-  })(TextField);
+    };
 
   return (
     <ThemeProvider theme={theme}>
@@ -60,10 +58,11 @@ const CompoundCal = () => {
           Compound Calculator
         </Typography>
         <Box sx={{ mb: 2 }}>
-          <CssTextField
+          <TextField
             label="Initial Investment"
             type="number"
             fullWidth
+            sx={CssTextField}
             value={initialInvestment.get()}  // Access the value
             onChange={(e) => setInitialInvestment(Number(e.target.value))}
             margin="normal"
@@ -75,10 +74,11 @@ const CompoundCal = () => {
           />
         </Box>
         <Box sx={{ mb: 2 }}>
-          <CssTextField
+          <TextField
             label="Yearly Interest (%)"
             type="number"
             fullWidth
+            sx={CssTextField}
             value={yearlyInterest.get()}
             onChange={(e) => setYearlyInterest(Number(e.target.value))}
             margin="normal"
@@ -90,10 +90,11 @@ const CompoundCal = () => {
           />
         </Box>
         <Box sx={{ mb: 2 }}>
-          <CssTextField
+          <TextField
             label="Monthly Investment"
             type="number"
             fullWidth
+            sx={CssTextField}
             value={monthlyInvestment.get()}
             onChange={(e) => setMonthlyInvestment(Number(e.target.value))}
             margin="normal"
@@ -105,10 +106,11 @@ const CompoundCal = () => {
           />
         </Box>
         <Box sx={{ mb: 2 }}>
-          <CssTextField
+          <TextField
             label="Number of Years"
             type="number"
             fullWidth
+            sx={CssTextField}
             value={numberOfYears.get()}
             onChange={(e) => setNumberOfYears(Number(e.target.value))}
             margin="normal"
