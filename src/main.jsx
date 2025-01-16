@@ -7,7 +7,7 @@ import "./index.css";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import GA4 from "./GA4.jsx";
 import LinkGenerator from "./LinkGenerator.jsx";
-import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend, BarElement } from 'chart.js';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -38,6 +38,7 @@ ChartJS.register(
   CategoryScale,  // This is where the "category" scale is registered
   LinearScale,
   LineElement,
+  BarElement,
   PointElement,
   Title,
   Tooltip,

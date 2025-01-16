@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { Box, Typography, Grid2 as Grid, ListItem, ListItemText} from '@mui/material';
-import { Line } from 'react-chartjs-2';
+import { Line, Bar } from 'react-chartjs-2';
 import { useHookstate } from '@hookstate/core';  // Hookstate hook
 import {
     initialInvestmentState,
@@ -58,13 +58,27 @@ const CompoundCalResult = () => {
       datasets: [
         {
           label: "Future Value",
-          data: yearlyData.map((data) => data.value),
+          data: yearlyData.map((data) => data.value, true),
           borderColor: themeColorState.get().primary,
           backgroundColor: themeColorState.get().secondary,
         },
       ],
     });
   };
+
+  const chartOptions = {
+    scales: {
+        y: {
+            ticks: {
+                // Include a dollar sign in the ticks
+                callback: function(value, index, ticks) {
+                    return formatCurrency(value, false);
+                }
+            }
+        },
+    }
+};
+
 
   var totalInvested;
   var totalEarned;
@@ -105,10 +119,12 @@ const CompoundCalResult = () => {
   }, [initialInvestment, yearlyInterest, monthlyInvestment, numberOfYears]);
 
 
-  const formatCurrency = (value) => {
+  const formatCurrency = (value, decimal) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
+      minimumFractionDigits: decimal ? 2:0,
+      maximumFractionDigits: decimal ? 2:0,
     }).format(value);
   };
 
@@ -154,25 +170,25 @@ const CompoundCalResult = () => {
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid size={6}>
         
-        <ResultItem primary={formatCurrency(result.get())} secondary={"Future Value"} />
+        <ResultItem primary={formatCurrency(result.get(), true)} secondary={"Future Value"} />
         </Grid>
         <Grid size={6}>
         <ResultItem primary={formatPercentage(calculateFinalInterestRate())} secondary={"Time-weighted return"} />
         </Grid>
         <Grid size={6}>
         
-        <ResultItem primary={formatCurrency(calculateTotalEarned())} secondary={"Total earned"} />
+        <ResultItem primary={formatCurrency(calculateTotalEarned(), true)} secondary={"Total earned"} />
         </Grid>
         <Grid size={6}>
         
-        <ResultItem primary={formatCurrency(calculateTotalInvested())} secondary={"Total Invested"} />
+        <ResultItem primary={formatCurrency(calculateTotalInvested(), true)} secondary={"Total Invested"} />
         </Grid>
       </Grid>
         </Box>
       )}
       {Object.keys(chartData.get()).length > 0 && (
         <Box sx={{ mt: 4 }}>
-          <Line data={chartData.get({noproxy: true})} />
+          <Bar data={chartData.get({noproxy: true})} options={chartOptions} />
         </Box>
       )}
     </>

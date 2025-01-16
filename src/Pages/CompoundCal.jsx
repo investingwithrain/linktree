@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Typography, Tooltip, Container, Box, Button, Slider, InputAdornment } from '@mui/material';
+import { TextField, Typography, Grid2 as Grid, Tooltip, Container, Box, Button, Slider, InputAdornment } from '@mui/material';
 import { withStyles } from '@mui/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useHookstate } from '@hookstate/core';  // Hookstate hook
@@ -58,8 +58,9 @@ const CompoundCal = () => {
         {/* <Typography variant="h4" component="h1" color="black"  gutterBottom>
           Compound Calculator
         </Typography> */}
+          <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 
-        <Box sx={{ mb: 2 }}>
+          <Grid size={6}>
           <TextField
             label="Initial Investment"
             type="number"
@@ -81,8 +82,8 @@ const CompoundCal = () => {
                 },
               }}
           />
-        </Box>
-        <Box sx={{ mb: 2 }}>
+        </Grid>
+        <Grid size={6}>
           <TextField
             label="Yearly Interest (%)"
             type="number"
@@ -104,8 +105,8 @@ const CompoundCal = () => {
                 },
               }}
           />
-        </Box>
-        <Box sx={{ mb: 2 }}>
+        </Grid>
+        <Grid size={6}>
           <TextField
             label="Monthly Investment"
             type="number"
@@ -126,8 +127,8 @@ const CompoundCal = () => {
                 },
               }}
           />
-        </Box>
-        <Box sx={{ mb: 2 }}>
+        </Grid>
+        <Grid size={6}>
           <TextField
             label="Number of Years"
             type="number"
@@ -144,7 +145,8 @@ const CompoundCal = () => {
             }}
             margin="normal"
           />
-        </Box>
+        </Grid>
+        </Grid>
           <Slider
             value={numberOfYears.get()}
             onChange={handleSliderChange}
