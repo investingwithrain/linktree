@@ -7,6 +7,9 @@ export const monthlyInvestmentState = hookstate(300);
 export const numberOfYearsState = hookstate(15);
 export const resultState = hookstate(null);
 export const chartDataState = hookstate({});
+export const themeColorState = hookstate({
+  primary:"rgba(0,95,115,1)",
+  secondary:"rgba(0,95,115,0.2)"});
 
 // Create functions for setting values directly if needed
 export const setInitialInvestment = (value) => {

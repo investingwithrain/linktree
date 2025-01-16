@@ -1,9 +1,10 @@
 import React from 'react';
-import { TextField, Typography, Container, Box, Button, Slider, InputAdornment } from '@mui/material';
+import { TextField, Typography, Tooltip, Container, Box, Button, Slider, InputAdornment } from '@mui/material';
 import { withStyles } from '@mui/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useHookstate } from '@hookstate/core';  // Hookstate hook
-import { initialInvestmentState, yearlyInterestState, monthlyInvestmentState, numberOfYearsState, setInitialInvestment, setYearlyInterest, setMonthlyInvestment, setNumberOfYears, resetToInitValue  } from '../data/compoundState';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import { themeColorState, initialInvestmentState, yearlyInterestState, monthlyInvestmentState, numberOfYearsState, setInitialInvestment, setYearlyInterest, setMonthlyInvestment, setNumberOfYears, resetToInitValue  } from '../data/compoundState';
 import CompoundCalResult from './CompoundCalResult';
 
 const CompoundCal = () => {
@@ -65,7 +66,14 @@ const CompoundCal = () => {
             fullWidth
             sx={CssTextField}
             value={initialInvestment.get()}  // Access the value
-            onChange={(e) => setInitialInvestment(Number(e.target.value))}
+            onChange={(e) => {
+
+                if (e.target.value === "") {
+                    setInitialInvestment("");
+                }else{
+                    setInitialInvestment(Number(e.target.value));
+                }
+            }}
             margin="normal"
             slotProps={{
                 input: {
@@ -81,7 +89,14 @@ const CompoundCal = () => {
             fullWidth
             sx={CssTextField}
             value={yearlyInterest.get()}
-            onChange={(e) => setYearlyInterest(Number(e.target.value))}
+            onChange={(e) => {
+
+                if (e.target.value === "") {
+                    setYearlyInterest("");
+                }else{
+                    setYearlyInterest(Number(e.target.value));
+                }
+            }}
             margin="normal"
             slotProps={{
                 input: {
@@ -97,7 +112,13 @@ const CompoundCal = () => {
             fullWidth
             sx={CssTextField}
             value={monthlyInvestment.get()}
-            onChange={(e) => setMonthlyInvestment(Number(e.target.value))}
+            onChange={(e) => {
+                if (e.target.value === "") {
+                    setMonthlyInvestment("");
+                }else{
+                    setMonthlyInvestment(Number(e.target.value));
+                }
+            }}
             margin="normal"
             slotProps={{
                 input: {
@@ -113,7 +134,14 @@ const CompoundCal = () => {
             fullWidth
             sx={CssTextField}
             value={numberOfYears.get()}
-            onChange={(e) => setNumberOfYears(Number(e.target.value))}
+            onChange={(e) => {
+
+                if (e.target.value === "") {
+                    setNumberOfYears("");
+                }else{
+                    setNumberOfYears(Number(e.target.value));
+                }
+            }}
             margin="normal"
           />
         </Box>
@@ -123,7 +151,7 @@ const CompoundCal = () => {
             aria-labelledby="number-of-years-slider"
             valueLabelDisplay="auto"
             valueLabelFormat={(value) => value===1? `${value} year`:`${value} years`}
-            sx={{ color: '#ee9b00' }}
+            sx={{ color: themeColorState.get().primary }}
             step={1}
             marks
             min={1}
@@ -132,9 +160,12 @@ const CompoundCal = () => {
         <CompoundCalResult />
         <br />
         <br />
-        <Button variant="contained" style={{ backgroundColor: '#ee9b00', color: '#001219' }} onClick={resetToInitValue}>
-          Reset
+        <Tooltip title="Reset">
+
+        <Button variant="text" style={{ color: themeColorState.get().primary }} onClick={resetToInitValue}>
+          <RestartAltIcon sx={{scale: 1.5}}/>
         </Button>
+        </Tooltip>
         <br />
         <br />
       </Box>
