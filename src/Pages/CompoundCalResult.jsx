@@ -95,11 +95,9 @@ const CompoundCalResult = () => {
   const calculateTotalEarned = () => {
     if(!totalInvested)
         totalInvested = calculateTotalInvested();
-    console.log(totalInvested);
     const futureValue = result.get();
     const totalEarned = futureValue - totalInvested;
 
-    console.log(totalEarned);
     return totalEarned;
   }
 
