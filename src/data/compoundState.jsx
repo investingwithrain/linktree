@@ -4,7 +4,7 @@ import { hookstate } from '@hookstate/core';
 export const initialInvestmentState = hookstate(300);
 export const yearlyInterestState = hookstate(10);
 export const monthlyInvestmentState = hookstate(300);
-export const numberOfYearsState = hookstate(8);
+export const numberOfYearsState = hookstate(10);
 export const resultState = hookstate(null);
 export const chartDataState = hookstate({});
 export const themeColorState = hookstate({
