@@ -1,7 +1,9 @@
 import React, {useEffect} from 'react';
-import { Box, Typography, Grid2 as Grid, ListItem, ListItemText} from '@mui/material';
+import { Box, Typography, Grid2 as Grid, ListItem, ListItemText, IconButton} from '@mui/material';
 import { Line, Bar } from 'react-chartjs-2';
 import { useHookstate } from '@hookstate/core';  // Hookstate hook
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+
 import {
     initialInvestmentState,
     yearlyInterestState,
@@ -141,10 +143,12 @@ const CompoundCalResult = () => {
   };
 
   const ResultItem = ({ primary, secondary }) => (
-    <ListItem alignItems="flex-start" button onClick={handleClick}
-    sx={{
-      cursor: 'copy',
-    }}
+    <ListItem alignItems="flex-start"
+    secondaryAction={
+      <IconButton edge="end" aria-label="copy" onClick={handleClick}>
+        <ContentCopyIcon sx={{scale:0.7}}/>
+      </IconButton>
+    }
     >
       <ListItemText
         primary={<Typography
