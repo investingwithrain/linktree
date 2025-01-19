@@ -57,7 +57,7 @@ const CompoundCalResult = () => {
       labels: yearlyData.map((data) => data.year),
       datasets: [
         {
-          label: "Future Value",
+          label: "未來價值",
           data: yearlyData.map((data) => data.value, true),
           borderColor: themeColorState.get().primary,
           backgroundColor: themeColorState.get().secondary,
@@ -134,8 +134,18 @@ const CompoundCalResult = () => {
         }).format(value);
     };
 
+
+  const handleClick = () => {
+    navigator.clipboard.writeText(formatCurrency(result));
+    alert('Copied to clipboard!');
+  };
+
   const ResultItem = ({ primary, secondary }) => (
-    <ListItem alignItems="flex-start">
+    <ListItem alignItems="flex-start" button onClick={handleClick}
+    sx={{
+      cursor: 'copy',
+    }}
+    >
       <ListItemText
         primary={<Typography
             component="span"
@@ -168,18 +178,18 @@ const CompoundCalResult = () => {
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid size={6}>
         
-        <ResultItem primary={formatCurrency(result.get(), true)} secondary={"Future Value"} />
+        <ResultItem primary={formatCurrency(result.get(), true)} secondary={"本利和 （總未來價值）"} />
         </Grid>
         <Grid size={6}>
-        <ResultItem primary={formatPercentage(calculateFinalInterestRate())} secondary={"Time-weighted return"} />
-        </Grid>
-        <Grid size={6}>
-        
-        <ResultItem primary={formatCurrency(calculateTotalEarned(), true)} secondary={"Total earned"} />
+        <ResultItem primary={formatPercentage(calculateFinalInterestRate())} secondary={"複息回報率"} />
         </Grid>
         <Grid size={6}>
         
-        <ResultItem primary={formatCurrency(calculateTotalInvested(), true)} secondary={"Total Invested"} />
+        <ResultItem primary={formatCurrency(calculateTotalEarned(), true)} secondary={"總利息收入"} />
+        </Grid>
+        <Grid size={6}>
+        
+        <ResultItem primary={formatCurrency(calculateTotalInvested(), true)} secondary={"總投入資本"} />
         </Grid>
       </Grid>
         </Box>

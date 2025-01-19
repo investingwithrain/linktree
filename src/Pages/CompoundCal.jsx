@@ -62,7 +62,7 @@ const CompoundCal = () => {
 
           <Grid size={6}>
           <TextField
-            label="Initial Investment"
+            label="初始投資金額"
             type="number"
             fullWidth
             sx={CssTextField}
@@ -85,7 +85,7 @@ const CompoundCal = () => {
         </Grid>
         <Grid size={6}>
           <TextField
-            label="Yearly Interest (%)"
+            label="年利率 (%)"
             type="number"
             fullWidth
             sx={CssTextField}
@@ -108,7 +108,7 @@ const CompoundCal = () => {
         </Grid>
         <Grid size={6}>
           <TextField
-            label="Monthly Investment"
+            label="每月供款"
             type="number"
             fullWidth
             sx={CssTextField}
@@ -130,7 +130,7 @@ const CompoundCal = () => {
         </Grid>
         <Grid size={6}>
           <TextField
-            label="Number of Years"
+            label="投資年數"
             type="number"
             fullWidth
             sx={CssTextField}
@@ -144,6 +144,11 @@ const CompoundCal = () => {
                 }
             }}
             margin="normal"
+            slotProps={{
+                input: {
+                  endAdornment: <InputAdornment position="start">年</InputAdornment>,
+                },
+              }}
           />
         </Grid>
         </Grid>
@@ -152,7 +157,7 @@ const CompoundCal = () => {
             onChange={handleSliderChange}
             aria-labelledby="number-of-years-slider"
             valueLabelDisplay="auto"
-            valueLabelFormat={(value) => value===1? `${value} year`:`${value} years`}
+            valueLabelFormat={(value) => value===1? `${value} 年`:`${value} 年`}
             sx={{ color: themeColorState.get().primary }}
             step={1}
             marks
