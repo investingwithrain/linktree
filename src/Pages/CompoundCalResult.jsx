@@ -1,6 +1,10 @@
 import React, {useEffect} from 'react';
 import { Box, Typography, Grid2 as Grid, ListItem, ListItemText, IconButton} from '@mui/material';
 import { Line, Bar } from 'react-chartjs-2';
+
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 import { useHookstate } from '@hookstate/core';  // Hookstate hook
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
@@ -15,6 +19,12 @@ import {
     setChartData,
     themeColorState,
   } from '../data/compoundState';
+
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
 const CompoundCalResult = () => {
     const initialInvestment = useHookstate(initialInvestmentState);
     const yearlyInterest = useHookstate(yearlyInterestState);
@@ -22,6 +32,20 @@ const CompoundCalResult = () => {
     const numberOfYears = useHookstate(numberOfYearsState);
     const result = useHookstate(resultState);
     const chartData = useHookstate(chartDataState);
+    const alertOpen = useHookstate(false);
+
+
+    const openAlert = () => {
+      alertOpen.set(true);
+    };
+
+    const closeAlert = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      alertOpen.set(false);
+    };
+
 
   const calculateCompoundInterest = () => {
     const initialInvestmentValue = initialInvestment.get();  // Get the value
@@ -137,15 +161,15 @@ const CompoundCalResult = () => {
     };
 
 
-  const handleClick = () => {
-    navigator.clipboard.writeText(formatCurrency(result));
-    alert('Copied to clipboard!');
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(result.get());
+    openAlert();
   };
 
   const ResultItem = ({ primary, secondary }) => (
     <ListItem alignItems="flex-start"
     secondaryAction={
-      <IconButton edge="end" aria-label="copy" onClick={handleClick}>
+      <IconButton edge="end" aria-label="copy" onClick={copyToClipboard}>
         <ContentCopyIcon sx={{scale:0.7}}/>
       </IconButton>
     }
@@ -203,6 +227,11 @@ const CompoundCalResult = () => {
           <Bar data={chartData.get({noproxy: true})} options={chartOptions} />
         </Box>
       )}
+      <Snackbar open={alertOpen.get()} autoHideDuration={6000} onClose={closeAlert}>
+        <Alert onClose={closeAlert} severity="success">
+          Copied to clipboard!
+        </Alert>
+      </Snackbar>
     </>
   );
 };

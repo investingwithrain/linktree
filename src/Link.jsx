@@ -6,15 +6,6 @@ import ReactGA from "react-ga4";
 
 function Link({ data, page }) {
   const handleClick = (item) => {
-    // Push an event to the dataLayer
-    // window.dataLayer = window.dataLayer || [];
-    // window.dataLayer.push({
-    //   event: 'button_click',
-    //   source: page,
-    //   link: item.link,
-    //   name: item.name,
-    //   description: item.description,
-    // });
 
 
     // Send a custom event
