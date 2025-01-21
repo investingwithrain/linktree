@@ -26,6 +26,7 @@ import {
   });
 
 const CompoundCalResult = () => {
+
     const initialInvestment = useHookstate(initialInvestmentState);
     const yearlyInterest = useHookstate(yearlyInterestState);
     const monthlyInvestment = useHookstate(monthlyInvestmentState);

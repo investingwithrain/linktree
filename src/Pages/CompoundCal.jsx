@@ -8,6 +8,8 @@ import { themeColorState, initialInvestmentState, yearlyInterestState, monthlyIn
 import CompoundCalResult from './CompoundCalResult';
 
 const CompoundCal = () => {
+  const version = "1.0.0"; // Define your version number here
+
     const initialInvestment = useHookstate(initialInvestmentState);
     const yearlyInterest = useHookstate(yearlyInterestState);
     const monthlyInvestment = useHookstate(monthlyInvestmentState);
@@ -166,16 +168,22 @@ const CompoundCal = () => {
           />
         <CompoundCalResult />
         <br />
-        <br />
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Typography variant="body2" sx={{ marginLeft: 2, color:themeColorState.get().primary, opacity: 0.3 }}>
+                        V{version}
+                    </Typography>
         <Tooltip title="Reset">
+
 
         <Button variant="text" style={{ color: themeColorState.get().primary }} onClick={resetToInitValue}>
           <RestartAltIcon sx={{scale: 1.5}}/>
         </Button>
         </Tooltip>
+                    </Box>
         <br />
         <br />
       </Box>
+
     </Container>
     </ThemeProvider>
   );
