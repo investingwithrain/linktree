@@ -228,7 +228,7 @@ const CompoundCalResult = () => {
           <Bar data={chartData.get({noproxy: true})} options={chartOptions} />
         </Box>
       )}
-      <Snackbar open={alertOpen.get()} autoHideDuration={6000} onClose={closeAlert}>
+      <Snackbar open={alertOpen.get()} autoHideDuration={3000} onClose={closeAlert}>
         <Alert onClose={closeAlert} severity="success">
           Copied to clipboard!
         </Alert>
