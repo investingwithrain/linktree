@@ -133,7 +133,7 @@ const CompoundCalResult = () => {
         totalInvested = calculateTotalInvested();
     if(!totalEarned)
         totalEarned = calculateTotalEarned();
-    const finalInterestRate = (totalEarned / totalInvested) * 100;
+    const finalInterestRate = (totalEarned / totalInvested);
     return finalInterestRate;
   }
 
@@ -167,9 +167,10 @@ const CompoundCalResult = () => {
     openAlert();
   };
 
-  const ResultItem = ({ primary, secondary }) => (
+  const ResultItem = ({ primary, secondary, copy }) => (
     <ListItem alignItems="flex-start"
     secondaryAction={
+      copy &&
       <IconButton edge="end" aria-label="copy" onClick={copyToClipboard}>
         <ContentCopyIcon sx={{scale:0.7}}/>
       </IconButton>
@@ -207,10 +208,10 @@ const CompoundCalResult = () => {
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid size={6}>
         
-        <ResultItem primary={formatCurrency(result.get(), true)} secondary={"本利和 （總未來價值）"} />
+        <ResultItem primary={formatCurrency(result.get(), true)} secondary={"本利和 （總未來價值）"} copy={formatCurrency(result.get(), true)} />
         </Grid>
         <Grid size={6}>
-        <ResultItem primary={formatPercentage(calculateFinalInterestRate())} secondary={"複息回報率"} />
+        <ResultItem primary={"+"+formatPercentage(calculateFinalInterestRate())} secondary={"複息回報率"} />
         </Grid>
         <Grid size={6}>
         

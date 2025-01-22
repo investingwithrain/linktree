@@ -8,7 +8,7 @@ import { themeColorState, initialInvestmentState, yearlyInterestState, monthlyIn
 import CompoundCalResult from './CompoundCalResult';
 
 const CompoundCal = () => {
-  const version = "1.0.0"; // Define your version number here
+  const version = "1.0.1"; // Define your version number here
 
     const initialInvestment = useHookstate(initialInvestmentState);
     const yearlyInterest = useHookstate(yearlyInterestState);
