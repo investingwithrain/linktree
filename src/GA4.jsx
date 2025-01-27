@@ -43,10 +43,13 @@ function GA4() {
 
           // Append the UTM parameters to the redirect URL
           const redirectUrl = new URL(data.redirectUrl);
-          redirectUrl.search +=
-            (redirectUrl.search ? "&" : "") + utmParams.toString();
+          // add the UTM parameters to the redirect URL
+          redirectUrl.search = utmParams.toString();
+          // redirect to the new URL
+          window.location.href = redirectUrl.toString();
+          
 
-          window.location.href = data.redirectUrl;
+          // window.location.href = data.redirectUrl + "&" + utmParams.toString();
         } else {
           console.log("No such document!");
           //   window.location.href = 'https://www.investingwithrain.com';
