@@ -43,9 +43,17 @@ function GA4() {
 
           // Append the UTM parameters to the redirect URL
           const redirectUrl = new URL(data.redirectUrl);
-          // add the UTM parameters to the redirect URL
-          redirectUrl.search = utmParams.toString();
-          // redirect to the new URL
+          // check if the redirect URL already has a query string
+          if (redirectUrl.search) {
+            // if it does, append the UTM parameters to the existing query string
+            redirectUrl.search += "&" + utmParams.toString();
+          } else {
+            // if it doesn't, add the UTM parameters to
+            // a new query string
+            redirectUrl.search = utmParams.toString();
+          }
+
+          // redirect to the new URL with the UTM parameters
           window.location.href = redirectUrl.toString();
           
 
