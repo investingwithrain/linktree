@@ -6,10 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "git diff-index --quiet HEAD -- || git stash && npm version patch -m \"Bump version to %s\" && git stash pop",
     "build": "vite build",
     "predeploy": "npm run build",
-    "deploy": "git add . && git commit -m 'auto push' && git push origin main && echo links.investingwithrain.com > ./dist/CNAME && gh-pages -d dist",
+    "deploy": "git add . && git commit -m 'auto push' && git push origin main && npm version patch && echo links.investingwithrain.com > ./dist/CNAME && gh-pages -d dist",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
