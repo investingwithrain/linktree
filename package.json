@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "npm version patch -m \"Bump version to %s\" && git add . && git commit -m 'bump up version' ",
+    "prebuild": "git diff-index --quiet HEAD -- || git stash && npm version patch -m \"Bump version to %s\" && git stash pop",
     "build": "vite build",
     "predeploy": "npm run build",
     "deploy": "git add . && git commit -m 'auto push' && git push origin main && echo links.investingwithrain.com > ./dist/CNAME && gh-pages -d dist",
