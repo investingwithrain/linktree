@@ -37,7 +37,7 @@ jobs:
         run: echo 'links.investingwithrain.com' > ./dist/CNAME
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages-artifact  # Artifact name (important!)
           path: './dist'
