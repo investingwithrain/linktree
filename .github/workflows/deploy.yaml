@@ -28,6 +28,12 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
+          
+      - name: Set Git user
+        run: |
+          git config --global user.email "yangfamilyclub@gmail.com"
+          git config --global user.name "Victor"
+
       - name: Install dependencies
         run: npm install
       - name: Build
