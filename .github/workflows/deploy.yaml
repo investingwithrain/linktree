@@ -47,9 +47,12 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: github-pages
+          name: github-pages  # Ensure this matches in the deploy step
           path: './dist'
           retention-days: 1
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+        with:
+          artifact-name: github-pages  # Explicitly specify the artifact name
