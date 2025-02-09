@@ -95,5 +95,5 @@
   min-width: 256px;
   margin: 1em;
   text-align: center;
-  text-shadow: 0px 0px 3px #d0bb1b, 0px 0px 3px #d0bb1b, 0px 0px 3px #d0bb1b, 0px 0px 3px #d0bb1b, 0px 0px 3px #d0bb1b;
+  /* text-shadow: 0px 0px 3px #d0bb1b, 0px 0px 3px #d0bb1b, 0px 0px 3px #d0bb1b, 0px 0px 3px #d0bb1b, 0px 0px 3px #d0bb1b; */
 }
