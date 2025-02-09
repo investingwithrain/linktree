@@ -1,12 +1,12 @@
 {
   "name": "linktree",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/investingwithrain/linktree",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "echo \"APP_VERSION=$npm_package_version\" > .env",
+    "prebuild": "npm version patch -m \"Bump version to %s\"",
     "build": "vite build",
     "predeploy": "npm run build",
     "deploy": "git add . && git commit -m 'auto push' && git push origin main && echo links.investingwithrain.com > ./dist/CNAME && gh-pages -d dist",

@@ -12,6 +12,7 @@ import ReactGA from "react-ga4"; // Import ReactGA
 ReactGA.initialize("G-CQL9ZVL151");
 const App = ({ source }) => {
   const data = source === "instagram" ? dataInstagram : dataThread;
+  const version = process.env.APP_VERSION;
 
   // Send pageview with a custom path
   ReactGA.send({
@@ -48,7 +49,7 @@ const App = ({ source }) => {
         個連結是RainIsHere的真實社交平台及獨家優惠連結，其他沒有登記的平台及連結全部屬於虛假帳戶或假平台，請大家小心騙徒喔！
       </p>
       <br />
-      <p>v.</p>
+      <p>v{version}</p>
     </>
   );
 };
