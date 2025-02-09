@@ -42,6 +42,12 @@ jobs:
           name: github-pages-artifact  # Artifact name (important!)
           path: './dist'
 
+      - name: Check for symlinks
+        run: find ./dist -type l -ls
+
+      - name: Check artifact size
+        run: du -sh ./dist
+        
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
