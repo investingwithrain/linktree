@@ -37,13 +37,13 @@ jobs:
         run: echo 'links.investingwithrain.com' > ./dist/CNAME
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4  # Updated to v4
+        uses: actions/upload-artifact@v4
         with:
-          name: github-pages-artifact
+          name: github-pages-artifact  # Artifact name (important!)
           path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3 # Updated to v3
+        uses: actions/deploy-pages@v3
         with:
-          artifact: github-pages-artifact
+          artifact_name: github-pages-artifact # Must match the artifact name EXACTLY
