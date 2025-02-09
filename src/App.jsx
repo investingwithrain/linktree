@@ -46,7 +46,7 @@ const App = ({ source }) => {
       <Link data={data} page={source} />
       <p className="read-the-docs">
         以上的{data.length}
-        個連結是RainIsHere的真實社交平台及獨家優惠連結，其他沒有登記的平台及連結全部屬於虛假帳戶或假平台，請大家小心騙徒喔！
+        個連結是RainIsHere的真實社交平台及獨家優惠連結，其他沒有登記的平台及連結全部屬於虛假帳戶或假平台，請大家小心騙徒喔！!
       </p>
       <br />
       <p className="version">v{version}</p>
