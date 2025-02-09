@@ -41,6 +41,8 @@ jobs:
         with:
           name: github-pages-artifact  # Artifact name (important!)
           path: './dist'
+          overwrite: true
+
 
       - name: Check for symlinks
         run: find ./dist -type l -ls
