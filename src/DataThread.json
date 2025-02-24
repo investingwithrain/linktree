@@ -1,38 +1,38 @@
 [
   {
-    "name": "Rain的書單",
-    "description": "",
-    "img": "https://i.ibb.co/Zzsj5Kw/graduate.png",
-    "link": "https://www.investingwithrain.com/pages/rain"
-  },
-  {
     "name": "成功投資者的全攻略",
     "description": "打造穩定收入與長期財富的必備教學",
-    "img": "https://i.ibb.co/Zzsj5Kw/graduate.png",
-    "link": "https://www.investingwithrain.com/bundles/super8"
-  },
-  {
-    "name": "Seeking Alpha",
-    "description": "Seeking Alpha Premium(Rain獨家7天免費試用+30美元折扣優惠)",
-    "img": "https://i.ibb.co/SPfhmRT/SA-Symbol-Orange-150x135-1-1.png",
-    "link": "https://www.sahg6dtr.com/37932Q1/R74QP/"
-  },
-  {
-    "name": "Firstrade",
-    "description": "美股及ETFs/美股$0手續費+離岸",
-    "img": "https://i.ibb.co/ZgwvpPg/bullish.png",
-    "link": "https://affiliate.firstrade.com/affiliate/idevaffiliate.php?id=1074"
-  },
-  {
-    "name": "Seeking Alpha",
-    "description": "Alpha Picks (50美元折扣優惠)",
-    "img": "https://i.ibb.co/SPfhmRT/SA-Symbol-Orange-150x135-1-1.png",
-    "link": "https://www.sahg6dtr.com/37932Q1/J8P3N/"
+    "img": "https://ibb.co/SwTY3b83",
+    "link": "https://www.investingwithrain.com/bundles/super8 "
   },
   {
     "name": "盈透證券",
     "description": "全球150個市場投資產品",
     "img": "https://s3-eu-west-1.amazonaws.com/tpd/logos/597c8ceb0000ff0005a7af84/0x0.png",
-    "link": "https://www.interactivebrokers.com.hk/mkt/?src=rainishereTh&url=%2Fcn%2Fwhyib%2Foverview.php%3Flang%3Dtc"
+    "link": "https://www.interactivebrokers.com.hk/mkt/?src=rainishereI&url=%2Fcn%2Fwhyib%2Foverview.php%3Flang%3Dtc"
+  },
+  {
+    "name": "Firstrade",
+    "description": "美股及ETFs/美股$0手續費+離岸",
+    "img": "https://affiliate.firstrade.com/affiliate/media/banners/Firstrade_004.gif",
+    "link": "https://affiliate.firstrade.com/affiliate/idevaffiliate.php?id=1074"
+  },
+  {
+    "name": "Seeking Alpha",
+    "description": "Seeking Alpha Premium(Rain獨家7天免費試用+折扣優惠)",
+    "img": "https://i.ibb.co/SPfhmRT/SA-Symbol-Orange-150x135-1-1.png",
+    "link": "https://www.sahg6dtr.com/37932Q1/R74QP/"
+  },
+  {
+    "name": "Seeking Alpha",
+    "description": "Alpha Picks (折扣優惠)",
+    "img": "https://i.ibb.co/SPfhmRT/SA-Symbol-Orange-150x135-1-1.png",
+    "link": "https://www.sahg6dtr.com/37932Q1/J8P3N/"
+  },
+  {
+    "name": "Rain的書單",
+    "description": "",
+    "img": "https://i.ibb.co/Zzsj5Kw/graduate.png",
+    "link": "https://www.investingwithrain.com/pages/rain"
   }
 ]
