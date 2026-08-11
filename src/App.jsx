@@ -9,30 +9,32 @@ import dataLinks from "./DataLinks.json";
 import social from "./Social.json";
 import ReactGA from "react-ga4"; // Import ReactGA
 import packageJson from "../package.json"; // Adjust the path as necessary
-import { CONTENT_DOCS, resolveLink, useContent } from "./useContent";
+import { CONTENT_DOCS, useContent } from "./useContent";
+import { resolveSource } from "./tracking";
 
 ReactGA.initialize("G-CQL9ZVL151");
 const App = ({ source }) => {
   // Editable via /admin; the bundled JSON is the fallback if Firestore is
   // unreachable or the doc has never been saved. One shared list for every
-  // route — per-source UTM links are resolved per item below.
-  const { data: links } = useContent(CONTENT_DOCS.links, dataLinks);
+  // route — utm_source is appended at click time (see tracking.js).
+  const { data } = useContent(CONTENT_DOCS.links, dataLinks);
   const { data: socialLinks } = useContent(CONTENT_DOCS.social, social);
-  const data = links.map((item) => ({
-    ...item,
-    link: resolveLink(item, source),
-  }));
   const version = packageJson.version;
+
+  // /instagram and /thread carry their own source; every other route (just
+  // "/" today) falls back to ?utm_source= on the real URL, e.g. the link
+  // handed out in a YouTube description.
+  const resolvedSource = resolveSource(source);
 
   // Send pageview with a custom path. Kept in an effect so the async content
   // load does not fire a duplicate hit on every re-render.
   useEffect(() => {
     ReactGA.send({
       hitType: "pageview",
-      page: "/" + source,
+      page: "/" + resolvedSource,
       title: "User on Linktree",
     });
-  }, [source]);
+  }, [resolvedSource]);
 
   return (
     <>
@@ -57,7 +59,7 @@ const App = ({ source }) => {
         ))}
       </div>
       <Blogs />
-      <Link data={data} page={source} />
+      <Link data={data} page={resolvedSource} />
       <p className="read-the-docs">
         以上的{data.length}
         個連結是RainIsHere的真實社交平台及獨家優惠連結，其他沒有登記的平台及連結全部屬於虛假帳戶或假平台，請大家小心騙徒喔！!

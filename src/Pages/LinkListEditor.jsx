@@ -31,29 +31,14 @@ const FIELDS = [
     key: "link",
     label: "Destination link",
     required: true,
-    helper: "Used everywhere unless a source-specific link below overrides it.",
-  },
-];
-
-// Optional per-source overrides, shown only when withSourceOverrides is set
-// (the main link cards). Use these to give the same card a different UTM
-// short-link per traffic source; empty means "use the destination link".
-const OVERRIDE_FIELDS = [
-  {
-    key: "linkInstagram",
-    label: "Instagram link (optional)",
-    helper: "Only used on /#/instagram — e.g. a short-link with utm_source=instagram.",
-  },
-  {
-    key: "linkThread",
-    label: "Threads link (optional)",
-    helper: "Only used on /#/thread — e.g. a short-link with utm_source=threads.",
+    helper:
+      "Paste the real destination URL. On investingwithrain.com links, utm_source/medium/campaign are added automatically when a visitor clicks.",
   },
 ];
 
 // Editor for the array-of-cards datasets: the link cards and the social icon
 // row. Both share the { name, description, img, link } shape.
-function LinkListEditor({ items, onChange, withSourceOverrides = false }) {
+function LinkListEditor({ items, onChange }) {
   const update = (index, key, value) => {
     const next = items.map((item, i) =>
       i === index ? { ...item, [key]: value } : item
@@ -114,20 +99,18 @@ function LinkListEditor({ items, onChange, withSourceOverrides = false }) {
 
           <AccordionDetails>
             <Stack spacing={2}>
-              {(withSourceOverrides ? [...FIELDS, ...OVERRIDE_FIELDS] : FIELDS).map(
-                (field) => (
-                  <TextField
-                    key={field.key}
-                    fullWidth
-                    size="small"
-                    label={field.label}
-                    required={field.required}
-                    helperText={field.helper}
-                    value={item[field.key] ?? ""}
-                    onChange={(e) => update(index, field.key, e.target.value)}
-                  />
-                )
-              )}
+              {FIELDS.map((field) => (
+                <TextField
+                  key={field.key}
+                  fullWidth
+                  size="small"
+                  label={field.label}
+                  required={field.required}
+                  helperText={field.helper}
+                  value={item[field.key] ?? ""}
+                  onChange={(e) => update(index, field.key, e.target.value)}
+                />
+              ))}
 
               <Stack direction="row" spacing={1}>
                 <Tooltip title="Move up">

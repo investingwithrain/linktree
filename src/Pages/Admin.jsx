@@ -256,11 +256,7 @@ function Admin() {
           )}
 
           {!loading && current.id !== CONTENT_DOCS.blog && (
-            <LinkListEditor
-              items={value || []}
-              onChange={setCurrent}
-              withSourceOverrides={current.id === CONTENT_DOCS.links}
-            />
+            <LinkListEditor items={value || []} onChange={setCurrent} />
           )}
         </Stack>
       </Container>

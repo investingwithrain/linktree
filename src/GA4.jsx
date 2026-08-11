@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, increment, Timestamp } from "firebase/firestore";
 
 import { db } from "./main.jsx";
+
+// Anything that goes wrong (bad code, deleted doc, Firestore down) must still
+// land the visitor somewhere useful, never on a black screen.
+const FALLBACK_URL = "https://www.investingwithrain.com";
 
 function GA4() {
   const location = useLocation();
@@ -11,10 +15,31 @@ function GA4() {
 
   useEffect(() => {
     const fetchDocument = async () => {
-      if (code) {
+      if (!code) {
+        window.location.replace(FALLBACK_URL);
+        return;
+      }
+
+      try {
         const docRef = doc(db, "Links", code);
         const docSnap = await getDoc(docRef);
+        if (!docSnap.exists()) {
+          console.log("No such document!");
+          window.location.replace(FALLBACK_URL);
+          return;
+        }
         const data = docSnap.data();
+
+        // Count the click in Firestore before navigating away — unlike the
+        // gtag event below, an awaited write can't be lost to the redirect.
+        try {
+          await updateDoc(docRef, {
+            clickCount: increment(1),
+            lastClickedAt: Timestamp.now(),
+          });
+        } catch (e) {
+          console.warn("Click count update failed", e);
+        }
 
         if (window.gtag) {
           // Send the UTM parameters as a custom event to Google Analytics
@@ -31,40 +56,32 @@ function GA4() {
           console.warn("Google Analytics (gtag) is not initialized");
         }
 
-        if (docSnap.exists()) {
-          // Construct the UTM query string
-          const utmParams = new URLSearchParams({
-            utm_source: data.utmSource || "(not set)",
-            utm_medium: data.utmMedium || "(not set)",
-            utm_campaign: data.utmCampaign || "(not set)",
-            utm_term: data.utmTerm || "(not set)",
-            utm_content: data.utmContent || "(not set)",
-          });
+        // Construct the UTM query string
+        const utmParams = new URLSearchParams({
+          utm_source: data.utmSource || "(not set)",
+          utm_medium: data.utmMedium || "(not set)",
+          utm_campaign: data.utmCampaign || "(not set)",
+          utm_term: data.utmTerm || "(not set)",
+          utm_content: data.utmContent || "(not set)",
+        });
 
-          // Append the UTM parameters to the redirect URL
-          const redirectUrl = new URL(data.redirectUrl);
-          // check if the redirect URL already has a query string
-          if (redirectUrl.search) {
-            // if it does, append the UTM parameters to the existing query string
-            redirectUrl.search += "&" + utmParams.toString();
-          } else {
-            // if it doesn't, add the UTM parameters to
-            // a new query string
-            redirectUrl.search = utmParams.toString();
-          }
-
-          // redirect to the new URL with the UTM parameters
-          window.location.href = redirectUrl.toString();
-          
-
-          // window.location.href = data.redirectUrl + "&" + utmParams.toString();
+        // Append the UTM parameters to the redirect URL
+        const redirectUrl = new URL(data.redirectUrl);
+        // check if the redirect URL already has a query string
+        if (redirectUrl.search) {
+          // if it does, append the UTM parameters to the existing query string
+          redirectUrl.search += "&" + utmParams.toString();
         } else {
-          console.log("No such document!");
-          //   window.location.href = 'https://www.investingwithrain.com';
+          // if it doesn't, add the UTM parameters to a new query string
+          redirectUrl.search = utmParams.toString();
         }
-      } else {
-        // Redirect to the external URL if no code is provided
-        window.location.href = "https://www.investingwithrain.com";
+
+        // replace() keeps the redirect page out of history, so the browser
+        // back button returns to where the visitor came from, not a loop.
+        window.location.replace(redirectUrl.toString());
+      } catch (e) {
+        console.error("Redirect failed", e);
+        window.location.replace(FALLBACK_URL);
       }
     };
 

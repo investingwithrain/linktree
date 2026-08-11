@@ -15,17 +15,6 @@ export const CONTENT_DOCS = {
   blog: "blog",
 };
 
-// A link card's destination for a given traffic source. The base `link` is the
-// default; `linkInstagram` / `linkThread` optionally override it so the same
-// card can carry a source-specific UTM short-link. Click attribution on the
-// linktree itself comes from the route (/#/instagram vs /#/thread), not from
-// the data — the overrides only matter for the destination site's analytics.
-export function resolveLink(item, source) {
-  if (source === "instagram" && item.linkInstagram) return item.linkInstagram;
-  if (source === "thread" && item.linkThread) return item.linkThread;
-  return item.link;
-}
-
 // Every content doc has the shape { data: <payload>, updatedAt, updatedBy }.
 export async function fetchContent(docId, fallback) {
   const snap = await getDoc(doc(db, CONTENT_COLLECTION, docId));

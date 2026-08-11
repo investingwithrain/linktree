@@ -13,15 +13,55 @@ Content lives in a Firestore collection called `content`, one doc per dataset:
 | `content/social` | Social icon row | `src/Social.json`    |
 | `content/blog`   | Blog entries    | `src/blog.json`      |
 
-There is one shared list of link cards for every route. Click attribution on
-the linktree side comes from the route the visitor used (`/#/instagram` vs
-`/#/thread`) — the GA event and pageview already carry it — so the cards do
-not need to be duplicated per source.
+There is one shared list of link cards for every route.
 
-A card can still carry a different UTM short-link per source for the
-*destination* site's analytics: the optional **Instagram link** / **Threads
-link** fields override the destination link on that route only. Leave them
-empty for the ~normal case where one URL serves every source.
+## How tracking works
+
+Cards store the **real destination URL** — no more generating a `/#/ga4`
+short-link per card per source. Attribution happens automatically, based on
+where the visitor came from (`src/tracking.js`, `resolveSource`):
+
+1. **A dedicated route** — `/#/instagram` and `/#/thread` are the two bio
+   links, and the app already knows the source from the route.
+2. **A `?utm_source=` on the real URL** — for every other platform, one
+   reusable link with a query param handed out once. This is the standard
+   way to tag a link and works because HashRouter only ever looks at the part
+   after `#`; the query string in front of it is untouched and both our own
+   code and GA4 itself can read it. The three ready-made links:
+
+   | Platform    | Link to paste (once) |
+   | ----------- | --------------------- |
+   | YouTube     | `https://links.investingwithrain.com/?utm_source=youtube&utm_medium=description&utm_campaign=organic#/` |
+   | Email       | `https://links.investingwithrain.com/?utm_source=email&utm_medium=signature&utm_campaign=organic#/` |
+   | X / Twitter | `https://links.investingwithrain.com/?utm_source=twitter&utm_medium=bio&utm_campaign=organic#/` |
+
+   Route source always wins if somehow both are present. No query param and
+   no route (e.g. someone typing the bare URL) resolves to `direct`.
+
+   Adding another platform later needs no code change — pick a source name
+   and hand out `?utm_source=<name>#/`.
+
+Once resolved, the source flows two places:
+
+- **Linktree side** — every card click sends a GA event tagged with the
+  resolved source.
+- **Destination side** — for `investingwithrain.com` destinations,
+  `utm_source=<resolved>`, `utm_medium=linktree` and `utm_campaign=organic`
+  are appended to the destination URL at click time. Affiliate links and other
+  domains are left untouched — their own ref codes do the attribution. A URL
+  that already carries `utm_` parameters is also left untouched, so a
+  hand-crafted campaign link wins over the defaults.
+
+Google Search needs no link at all — GA4 detects the referrer automatically
+and reports it as Organic Search in Traffic acquisition. Anyone reposting your
+link elsewhere is untaggable by definition, since you never touch that link.
+
+The `/#/link-generator` + `/#/ga4` short-link system is still the right tool
+when a link needs to stay editable *after* posting — e.g. you want to redirect
+an already-published video's link to a different page later without editing
+the video. Each short-link doc in `Links` also keeps a `clickCount` and
+`lastClickedAt`, updated on every redirect, so click totals don't depend on
+the GA event surviving the redirect race.
 
 Each doc is `{ data, updatedAt, updatedBy }`.
 

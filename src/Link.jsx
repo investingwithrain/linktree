@@ -3,20 +3,22 @@ import "@fontsource/roboto"; // Defaults to weight 400.
 import "./Link.css";
 import "./fonts.css";
 import ReactGA from "react-ga4";
+import { appendUtm } from "./tracking";
 
 function Link({ data, page }) {
   const handleClick = (item) => {
-
+    // Tag our own destinations with utm params derived from the visitor's source.
+    const url = appendUtm(item.link, page);
 
     // Send a custom event
     ReactGA.event({
       category: "User Click Link",
       action: "User Click Link - "+page,
-      label: item.link, // optional
+      label: url, // optional
     });
 
     // Open the link in a new tab
-    window.open(item.link, "_blank");
+    window.open(url, "_blank");
   };
 
   return (

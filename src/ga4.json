@@ -1,4 +1,4 @@
 {
-  "source": ["threads", "facebook", "instagram", "youtube", "email", "patreon"],
+  "source": ["threads", "facebook", "instagram", "youtube", "email", "twitter", "patreon"],
   "medium": ["organic", "post", "linktree", "story", "description", "member-only"]
 }
