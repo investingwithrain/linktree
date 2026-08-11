@@ -2,12 +2,15 @@ import React from 'react';
 import "@fontsource/roboto"; // Defaults to weight 400.
 import './blogs.css'
 import './fonts.css'
-import blog from './blog.json';
+import blogFallback from './blog.json';
 import { useNavigate } from 'react-router-dom';
+import { CONTENT_DOCS, useContent } from './useContent';
 
 function Blogs() {
   const navigate = useNavigate();
-  const item = blog.list[blog.showThisInLinktree];
+  // Editable via /admin; falls back to the bundled blog.json.
+  const { data: blog } = useContent(CONTENT_DOCS.blog, blogFallback);
+  const item = blog?.list?.[blog?.showThisInLinktree];
   if (item === undefined) {
     return (
       <></>

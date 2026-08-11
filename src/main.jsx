@@ -9,28 +9,12 @@ import GA4 from "./GA4.jsx";
 import LinkGenerator from "./LinkGenerator.jsx";
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend, BarElement } from 'chart.js';
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firestore'; // Correct import for getFirestore
 import CompoundCal from "./Pages/CompoundCal.jsx";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import Admin from "./Pages/Admin.jsx";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCj5vDpUUC-LYsn_qzQocrIbhz4yys-UL0",
-  authDomain: "linktree-c2e43.firebaseapp.com",
-  projectId: "linktree-c2e43",
-  storageBucket: "linktree-c2e43.firebasestorage.app",
-  messagingSenderId: "1053507136109",
-  appId: "1:1053507136109:web:5dacbb69164118e8c9ed64",
-  measurementId: "G-CQL9ZVL151"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+// Firebase now lives in ./firebase.js. Re-exported here so the existing
+// `import { db } from "./main.jsx"` callers keep working unchanged.
+export { db } from "./firebase";
 
 
 // Register components
@@ -56,6 +40,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/blog/:folder" element={<Blog />} />
         <Route path="/link-generator" element={<LinkGenerator />} />
         <Route path="/calculator" element={<CompoundCal />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </HashRouter>
   </React.StrictMode>

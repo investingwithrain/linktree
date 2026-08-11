@@ -1,0 +1,44 @@
+rules_version = '2';
+
+// IMPORTANT: publishing this file REPLACES the whole ruleset for the project.
+// Before pasting it into the Firebase console, compare it against the rules you
+// already have (Firestore Database > Rules) and merge anything extra across.
+//
+// The `Links` block below mirrors the current, unauthenticated behaviour of
+// src/LinkGenerator.jsx — anyone can create UTM short links. That is how the
+// project already works; tighten it separately if you want to change that.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Keep this list in sync with VITE_ADMIN_EMAILS in .env.
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email in [
+             'yangfamilyclub@gmail.com',
+             'sally.l@rainvic.com',
+             'rainishere20@gmail.com'
+           ];
+    }
+
+    // Editable site content: link cards, social icons, blog entries.
+    // World readable (it renders the public page), admin writable.
+    match /content/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // UTM short links created by /#/link-generator and resolved by /#/ga4.
+    match /Links/{linkId} {
+      allow read, create, update: if true;
+      allow delete: if isAdmin();
+    }
+
+    // Campaign names used by CampaignField.jsx.
+    match /Campaign/{campaignId} {
+      allow read, create, update: if true;
+      allow delete: if isAdmin();
+    }
+  }
+}
